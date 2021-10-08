@@ -5,6 +5,8 @@ import { PrismaClient } from '@prisma/client'
 type Data = {
   email: string | null
   name: string | null
+  activated: boolean | null
+  disabled: boolean | null
 }
 
 // Init Prisma
@@ -16,6 +18,8 @@ async function fetchUsers() {
       id: false,
       name: true,
       email: true,
+      activated: true,
+      disabled: true
     }
   })
 }
@@ -49,5 +53,5 @@ export default async function handler(
 
   console.log(users);
 
-  res.status(200).json( users )
+  res.status(200).json(users)
 }
