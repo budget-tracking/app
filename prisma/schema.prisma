@@ -11,14 +11,15 @@ generator client {
 }
 
 model User {
-  id        BigInt   @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  profile   Profile?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  activated Boolean  @default(false)
-  disabled  Boolean  @default(false)
+  id         BigInt   @id @default(autoincrement())
+  email      String   @unique
+  name       String?
+  profile    Profile?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  activated  Boolean  @default(false)
+  disabled   Boolean  @default(false)
+  resetToken String?
 }
 
 model Profile {
