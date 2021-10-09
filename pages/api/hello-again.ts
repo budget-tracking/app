@@ -1,21 +1,15 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Prisma } from '@prisma/client'
 
-type Data = {
-  email: string | null
-  name: string | null
-  activated: boolean | null
-  disabled: boolean | null
-  createdAt: Date | null
-}
-
-// Init Prisma
 const prisma = new PrismaClient()
 
 async function fetchUsers() {
-  return await prisma.user.findMany()
+  const users = await prisma.user.findMany()
+  return users
 }
+
+type UsersWithProfiles = Prisma.PromiseReturnType<typeof fetchUsers>
 
 async function createSampleUser(): Promise<void> {
   await prisma.user.create({
@@ -34,7 +28,8 @@ async function createSampleUser(): Promise<void> {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data[]>
+  // NOTE An example how to use Prisma genereted types (see the type defenition)
+  res: NextApiResponse<UsersWithProfiles>
 ) {
   let users
   users = await fetchUsers()
