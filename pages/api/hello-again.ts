@@ -28,8 +28,11 @@ async function createSampleUser(): Promise<void> {
 export default async function handler(
   req: NextApiRequest,
   // NOTE An example how to use Prisma genereted types (see the type defenition)
-  res: NextApiResponse<UsersWithProfiles>
+  res: NextApiResponse<UsersWithProfiles | { message: string }>
 ) {
+  // disable the example handler
+  res.status(401).json({ message: "Access denied" })
+  
   let users
   users = await fetchUsers()
 
@@ -38,8 +41,6 @@ export default async function handler(
     await createSampleUser()
     users = await fetchUsers()
   }
-
-  console.log(users);
 
   res.status(200).json(users)
 }
