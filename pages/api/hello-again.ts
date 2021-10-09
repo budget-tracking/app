@@ -7,21 +7,14 @@ type Data = {
   name: string | null
   activated: boolean | null
   disabled: boolean | null
+  createdAt: Date | null
 }
 
 // Init Prisma
 const prisma = new PrismaClient()
 
 async function fetchUsers() {
-  return await prisma.user.findMany({
-    select: {
-      id: false,
-      name: true,
-      email: true,
-      activated: true,
-      disabled: true
-    }
-  })
+  return await prisma.user.findMany()
 }
 
 async function createSampleUser(): Promise<void> {

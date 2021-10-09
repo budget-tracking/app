@@ -1,8 +1,13 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" BIGSERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "activated" BOOLEAN NOT NULL DEFAULT false,
+    "disabled" BOOLEAN NOT NULL DEFAULT false,
+    "resetToken" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -11,7 +16,9 @@ CREATE TABLE "User" (
 CREATE TABLE "Profile" (
     "id" BIGSERIAL NOT NULL,
     "bio" TEXT,
-    "userId" BIGINT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );
