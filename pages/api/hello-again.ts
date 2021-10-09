@@ -16,7 +16,6 @@ async function createSampleUser(): Promise<void> {
     data: {
       name: "John Doe",
       email: "jd@mail.com",
-      password: "123",
       profile: {
         create: {
           bio: "I like cats"
