@@ -1,0 +1,9 @@
+# Use this example in your local or dev stage
+version: '3.6'
+services:
+  postgres:
+    ports:
+    - "54132:5432"
+  node:
+    command: "bash -c 'yarn dev'"
+

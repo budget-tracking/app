@@ -1,9 +1,27 @@
 version: '3.6'
 services:
   postgres:
+    container_name: budget-tracking_postgres
     image: postgres:12
-    restart: always
+    restart: unless-stopped
     volumes:
     - ./docker/db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgrespassword
+    networks:
+    - budget-tracking
+  node:
+    restart: unless-stopped
+    networks:
+      - budget-tracking
+    image: node:14-buster
+    container_name: budget-tracking_node
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www/
+    command: "bash -c 'yarn build && yarn start'"
+    ports:
+      - 3000:3000
+
+networks:
+  budget-tracking:
