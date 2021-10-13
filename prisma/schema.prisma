@@ -14,23 +14,12 @@ model User {
   id            String    @id @default(uuid())
   email         String    @unique
   name          String?
-  profile       Profile?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @default(now())
   disabled      Boolean   @default(false)
   emailVerified DateTime?
   accounts      Account[]
   sessions      Session[]
-}
-
-// TODO a candidate to remove
-model Profile {
-  id        BigInt   @id @default(autoincrement())
-  bio       String?
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
 }
 
 // a next-auth model
