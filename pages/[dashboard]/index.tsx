@@ -15,7 +15,7 @@ function Dasboard(props: Props) {
   if ( session === null) router.push('/')
 
   return (
-    <></>
+    <>Dashboard page</>
   )
 }
 
