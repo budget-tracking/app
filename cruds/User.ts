@@ -7,8 +7,14 @@ export async function findMany(args: Prisma.UserFindManyArgs = {}) {
 }
 export type Users = Prisma.PromiseReturnType<typeof findMany>
 
-export async function createOne<T extends Prisma.UserCreateArgs>(
+export async function create<T extends Prisma.UserCreateArgs>(
   args: Prisma.SelectSubset<T, Prisma.UserCreateArgs>
-  ) {
+) {
   return await prisma.user.create(args)
+}
+
+export async function deleteOne<T extends Prisma.UserDeleteArgs>(
+  args: Prisma.SelectSubset<T, Prisma.UserDeleteArgs>
+) {
+  return await prisma.user.delete(args)
 }
