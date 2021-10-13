@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { findMany, createOne, Users } from 'cruds/User'
+import { findMany, create, Users } from 'cruds/User'
 
 async function createSampleUser() {
   const data = {
@@ -7,7 +7,7 @@ async function createSampleUser() {
     email: "jd@mail.com",
   }
 
-  await createOne({data})
+  await create({data})
 }
 
 export default async function handler(
