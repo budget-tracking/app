@@ -11,6 +11,9 @@
     "build-storybook": "build-storybook",
     "test": "jest --coverage --verbose"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seeds/LedgerEntryType.ts"
+  },
   "dependencies": {
     "@next-auth/prisma-adapter": "^0.5.2-next.15",
     "@prisma/client": "^3.2.1",
