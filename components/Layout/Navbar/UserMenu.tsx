@@ -5,6 +5,8 @@ interface Props { }
 
 function UserMenu(props: Props) {
   const { data: session, status } = useSession()
+  if (status === "loading") return null
+  console.log(session);
 
   return (
     <>
