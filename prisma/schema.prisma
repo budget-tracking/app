@@ -11,15 +11,16 @@ generator client {
 }
 
 model User {
-  id            String    @id @default(uuid())
-  email         String    @unique
+  id            String        @id @default(uuid())
+  email         String        @unique
   name          String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now())
-  disabled      Boolean   @default(false)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @default(now())
+  disabled      Boolean       @default(false)
   emailVerified DateTime?
   accounts      Account[]
   sessions      Session[]
+  LedgerEntry   LedgerEntry[]
 }
 
 // a next-auth model
@@ -38,8 +39,8 @@ model Account {
   oauth_token_secret String?
   oauth_token        String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId             String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 
   @@unique([provider, providerAccountId])
 }
@@ -60,4 +61,24 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// a ledger related model
+model LedgerEntryType {
+  name        String        @id
+  title       String
+  LedgerEntry LedgerEntry[]
+}
+
+// a ledger related model
+model LedgerEntry {
+  id          String          @id @default(uuid())
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @default(now())
+  userId      String
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  typeName    String
+  type        LedgerEntryType @relation(fields: [typeName], references: [name])
+  amount      Decimal
+  description String?
 }
