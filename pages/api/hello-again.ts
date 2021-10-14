@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { findMany, create, Users } from 'cruds/User'
+import { findMany, create } from '@cruds/User'
+import { Users } from '@cruds/User/types'
 
 async function createSampleUser() {
   const data = {
@@ -16,7 +17,7 @@ export default async function handler(
   res: NextApiResponse<Users | { message: string }>
 ) {
   // disable the example handler
-  // res.status(401).json({ message: "Access denied" })
+  res.status(401).json({ message: "Access denied" })
 
   let users
   users = await findMany()

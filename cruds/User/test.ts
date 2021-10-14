@@ -1,4 +1,4 @@
-import { findMany, create, deleteOne, findUnique } from './User'
+import { findMany, create, deleteOne, findUnique } from '.'
 
 describe('cruds/User.findMany', () => {
   it('should get first five (or less) users', async () => {
