@@ -3,7 +3,7 @@
     "sourceMap": true,
     "outDir": "dist",
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [ "dom", "dom.iterable", "esnext" ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -17,10 +17,15 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@cruds/*": ["cruds/*"],
-    }
+      "@components/*": [ "components/*" ],
+      "@cruds/*": [ "cruds/*" ],
+    },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "next-auth.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+  ],
+  "exclude": [ "node_modules" ]
 }
