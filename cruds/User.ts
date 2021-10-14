@@ -7,6 +7,12 @@ export async function findMany(args: Prisma.UserFindManyArgs = {}) {
 }
 export type Users = Prisma.PromiseReturnType<typeof findMany>
 
+export async function findUnique<T extends Prisma.UserFindUniqueArgs>(
+  args: Prisma.SelectSubset<T, Prisma.UserFindUniqueArgs>
+) {
+  return await prisma.user.findUnique(args)
+}
+
 export async function create<T extends Prisma.UserCreateArgs>(
   args: Prisma.SelectSubset<T, Prisma.UserCreateArgs>
 ) {

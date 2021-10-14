@@ -1,4 +1,4 @@
-import { findMany, create, deleteOne } from './User'
+import { findMany, create, deleteOne, findUnique } from './User'
 
 describe('cruds/User.findMany', () => {
   it('should get first five (or less) users', async () => {
@@ -29,6 +29,16 @@ describe('cruds/User.findMany', () => {
     uuid = response.id
     console.log({ uuid });
     expect(uuid).toEqual(expect.any(String))
+  });
+
+  it('should return info about the created user', async () => {
+    const res = await findUnique({
+      where: {
+        id: uuid
+      }
+    })
+
+    expect(res?.email).toBe('foo@bar.baz')
   });
 
   it('should remove the created user and return its name', async () => {
