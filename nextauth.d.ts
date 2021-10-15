@@ -4,6 +4,7 @@ type NextAuthSessionData<T> = {
 } | null
 
 type NextAuthUnauthorizedResponse = {
-  error: string
+  error: any
   code: number
+  data?: any
 }

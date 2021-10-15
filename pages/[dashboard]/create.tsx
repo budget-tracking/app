@@ -30,10 +30,11 @@ function Create(props: Props) {
   }
 
   const handleFormChange = (e: BaseSyntheticEvent) => {
-    console.log('form changed');
     const target = e.target
     const { name, value } = target
     setForm({ ...form, ...{ [name]: value } })
+    console.log(form);
+    
   }
 
   return (
